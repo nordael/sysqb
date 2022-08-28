@@ -2,13 +2,18 @@ package models.disciplina;
 
 import models.disciplina.GradeType;
 public class DisciplinaModel {
+    private String nome;
     private String codigo;
     private Integer periodo;
-    private Boolean disponibilidade;
+    private StatusDisciplina disponibilidade;
     private GradeType grade;
     private DisciplinaTipo disciplinaTipo;
     private Integer cargaHoraria;
 
+
+    public String getNome() {
+        return nome;
+    }
 
     public String getCodigo() {
         return codigo;
@@ -18,7 +23,7 @@ public class DisciplinaModel {
         return periodo;
     }
 
-    public Boolean getDisponibilidade() {
+    public StatusDisciplina getDisponibilidade() {
         return disponibilidade;
     }
 
@@ -34,6 +39,9 @@ public class DisciplinaModel {
         return cargaHoraria;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
@@ -50,7 +58,7 @@ public class DisciplinaModel {
         this.disciplinaTipo = disciplinaTipo;
     }
 
-    public void setDisponibilidade(Boolean disponibilidade) {
+    public void setDisponibilidade(StatusDisciplina disponibilidade) {
         this.disponibilidade = disponibilidade;
     }
 

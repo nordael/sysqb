@@ -1,10 +1,11 @@
 package app.sysqb;
 
+import sysqb.views.disciplinas.DisciplinasView;
 import sysqb.views.fomulario.DadoAlunoView;
 
 public class Main {
     public static void main(String[] args) {
-        DadoAlunoView dadoAlunoView = new DadoAlunoView();
-        System.out.println(dadoAlunoView.getAlunoController().getAlunoName());
+        DisciplinasView disciplinasView = new DisciplinasView();
+        disciplinasView.printDisciplinas();
     }
 }
