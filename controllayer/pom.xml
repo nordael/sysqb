@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>app.sysqb</groupId>
+    <groupId>controllers</groupId>
     <artifactId>controllayer</artifactId>
     <dependencies>
         <dependency>
