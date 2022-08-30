@@ -14,6 +14,7 @@
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<attribute name="test" value="true"/>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
@@ -21,6 +22,8 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 =======
+=======
+>>>>>>> Feat/implementing csv io (#4)
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="test" value="true"/>
@@ -31,6 +34,9 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
+>>>>>>> Feat/implementing csv io (#4)
+=======
 >>>>>>> Feat/implementing csv io (#4)
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>

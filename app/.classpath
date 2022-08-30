@@ -14,10 +14,13 @@
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<attribute name="test" value="true"/>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 =======
+=======
+>>>>>>> Feat/implementing csv io (#4)
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="test" value="true"/>
@@ -26,6 +29,9 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-13">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
+<<<<<<< HEAD
+>>>>>>> Feat/implementing csv io (#4)
+=======
 >>>>>>> Feat/implementing csv io (#4)
 		</attributes>
 	</classpathentry>
@@ -35,7 +41,10 @@
 		</attributes>
 	</classpathentry>
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+=======
+>>>>>>> Feat/implementing csv io (#4)
 =======
 >>>>>>> Feat/implementing csv io (#4)
 	<classpathentry kind="output" path="target/classes"/>

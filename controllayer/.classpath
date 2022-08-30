@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> Feat/implementing csv io (#4)
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-13">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
+>>>>>>> Feat/implementing csv io (#4)
+=======
 >>>>>>> Feat/implementing csv io (#4)
 	<classpathentry kind="src" output="target/classes" path="src/main/java">
 		<attributes>
@@ -22,6 +28,7 @@
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<attribute name="test" value="true"/>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
@@ -36,6 +43,11 @@
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="test" value="true"/>
 >>>>>>> Feat/implementing csv io (#4)
+=======
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="test" value="true"/>
+>>>>>>> Feat/implementing csv io (#4)
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
@@ -44,6 +56,10 @@
 		</attributes>
 	</classpathentry>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	<classpathentry combineaccessrules="false" kind="src" path="/datalayer"/>
+>>>>>>> Feat/implementing csv io (#4)
 =======
 	<classpathentry combineaccessrules="false" kind="src" path="/datalayer"/>
 >>>>>>> Feat/implementing csv io (#4)
@@ -56,7 +72,11 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: org.apache.commons:commons-collections4:4.4"/>
 	<classpathentry kind="output" path="target/classes"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
 </classpath>
+=======
+</classpath>
+>>>>>>> Feat/implementing csv io (#4)
 =======
 </classpath>
 >>>>>>> Feat/implementing csv io (#4)

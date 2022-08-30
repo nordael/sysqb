@@ -21,7 +21,11 @@ public class DisciplinasView {
 
     public void printDisciplinas(){
 <<<<<<< HEAD
+<<<<<<< HEAD
         List<DisciplinaModel> disciplinas = disciplinaCsvParserContoller.csvReader("disciplinas_2019.csv", this.fields);
+=======
+        List<DisciplinaModel> disciplinas = disciplinaCsvParserContoller.csvReader("app/resources/disciplinas_2019.csv", this.fields);
+>>>>>>> Feat/implementing csv io (#4)
 =======
         List<DisciplinaModel> disciplinas = disciplinaCsvParserContoller.csvReader("app/resources/disciplinas_2019.csv", this.fields);
 >>>>>>> Feat/implementing csv io (#4)
