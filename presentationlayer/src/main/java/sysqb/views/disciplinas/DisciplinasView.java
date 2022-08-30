@@ -20,7 +20,7 @@ public class DisciplinasView {
     }
 
     public void printDisciplinas(){
-        List<DisciplinaModel> disciplinas = disciplinaCsvParserContoller.csvReader("app/resources/disciplinas_2019.csv", this.fields);
+        List<DisciplinaModel> disciplinas = disciplinaCsvParserContoller.csvReader("disciplinas_2019.csv", this.fields);
         for (DisciplinaModel disciplina : disciplinas) {
             System.out.println(disciplina.getCodigo() + " - " + disciplina.getNome());
         }

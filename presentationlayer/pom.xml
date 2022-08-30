@@ -13,7 +13,7 @@
     <artifactId>presentationlayer</artifactId>
     <dependencies>
         <dependency>
-            <groupId>app.sysqb</groupId>
+            <groupId>controllers</groupId>
             <artifactId>controllayer</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
