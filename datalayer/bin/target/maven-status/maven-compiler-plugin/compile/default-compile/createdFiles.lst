@@ -1,0 +1,8 @@
+models/aluno/AlunoModel.class
+models/formulario/DadoAlunoModel.class
+models/csvparser/CsvInterfaceModel.class
+models/disciplina/DisciplinaModel.class
+models/disciplina/StatusDisciplina.class
+models/disciplina/GradeType.class
+models/aluno/Situacao.class
+models/disciplina/DisciplinaTipo.class
