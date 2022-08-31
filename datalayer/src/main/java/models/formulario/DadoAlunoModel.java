@@ -12,4 +12,22 @@ public class DadoAlunoModel {
     public String getName() {
         return nome;
     }
+    
+    public void setEmail(String email){
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setGrr(String grr) {
+        this.grr = grr;
+    }
+
+    public String getGrr(){
+        return grr;
+    }
+
+    
 }
