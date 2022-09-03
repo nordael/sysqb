@@ -14,12 +14,10 @@
         <module>app</module>
         <module>controllayer</module>
     </modules>
-
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.opencsv</groupId>
@@ -27,5 +25,12 @@
             <version>5.6</version>
         </dependency>
     </dependencies>
-
+    <build>
+        <finalName>sysqb</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+    </build>
 </project>

@@ -18,13 +18,15 @@ import java.util.List;
 public class DisciplinaCsvParserContoller implements CsvInterfaceModel<DisciplinaModel> {
     @Override
     public List<DisciplinaModel> csvReader(String path, List<Integer> fields) {
+        ArrayList<DisciplinaModel> disciplinas = new ArrayList<>();
+        InputStream resource;
+        Reader reader;
         FileReader fileReader;
 
-        ArrayList<DisciplinaModel> disciplinas = new ArrayList<>();
-
         try {
-            fileReader = new FileReader(path);
-
+            resource = this.getClass().getClassLoader().getResourceAsStream(path);
+            assert resource != null;
+            reader = new InputStreamReader(resource);
         } catch (Exception e) {
             System.out.println("Error: Não foi possivel ler o arquivo csv!" + e.getMessage());
             return null;
@@ -36,7 +38,7 @@ public class DisciplinaCsvParserContoller implements CsvInterfaceModel<Disciplin
                 .withQuoteChar('\"').build();
 
         try {
-            csvReader = new CSVReaderBuilder(fileReader)
+            csvReader = new CSVReaderBuilder(reader)
                     .withCSVParser(parser)
                     .withSkipLines(1)
                     .build();
@@ -45,9 +47,9 @@ public class DisciplinaCsvParserContoller implements CsvInterfaceModel<Disciplin
             return null;
         }
 
-        Iterator csvReaderIterator = csvReader.iterator();
+        Iterator<String[]> csvReaderIterator = csvReader.iterator();
         while (csvReaderIterator.hasNext()) {
-            String[] line = (String[]) csvReaderIterator.next();
+            String[] line = csvReaderIterator.next();
 
             DisciplinaModel disciplinaModel = new DisciplinaModel();
             disciplinaModel.setNome(line[fields.get(0)]);
