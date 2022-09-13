@@ -31,7 +31,7 @@ public class DisciplinasView extends AbstractTableModel {
     @Override
     public int getRowCount() {
         // retorna o total de linhas na tabela
-        return fields.size();
+        return disciplinasDoPeriodo.size(); 
     }
 
     @Override
