@@ -14,6 +14,8 @@ public class DisciplinasView extends AbstractTableModel {
     private DisciplinaCsvParserContoller disciplinaCsvParserContoller;
     private List<Integer> fields;
     private List<DisciplinaModel> disciplinasDoPeriodo;// usamos como dados uma lista genérica de Disciplina
+    private List<String> disciplinasSelecionadas;// usamos como dados uma lista genérica de Disciplina
+
 
     private int periodo;
 
@@ -25,6 +27,10 @@ public class DisciplinasView extends AbstractTableModel {
 	private final int SELECIONADA_QUEBRA=4;
 
     private final String colunas[] = { "Nome:", "Período:", "Código:", "Carga Horária", "Selecionada" };
+
+    public List<String> getDisciplinasSelecionadas(){
+        return this.disciplinasSelecionadas; 
+    }
 
     @Override
     public int getColumnCount() {
@@ -75,7 +81,7 @@ public class DisciplinasView extends AbstractTableModel {
             case NOME:
                 return disciplina.getNome();
             case SELECIONADA_QUEBRA:
-                return disciplina.getSelecionadaBarreira();
+                return true;
             default:
                 throw new IndexOutOfBoundsException("Coluna Inválida!!!");
         }
@@ -98,7 +104,9 @@ public class DisciplinasView extends AbstractTableModel {
         DisciplinaModel disciplina = disciplinasDoPeriodo.get(rowIndex);
 		
 		if(columnIndex == SELECIONADA_QUEBRA){
-			disciplina.setSelecionadaBarreira((boolean)aValue);
+			// disciplina.setSelecionadaBarreira((boolean)aValue);
+
+            // this.disciplinasSelecionadas ;
 		}
 	}
     

@@ -10,7 +10,7 @@ public class Main
         GuiPrincipal principal=new GuiPrincipal();
         principal.setVisible(true);
         HistoricoView historicoView = new HistoricoView();
-        historicoView.printHistorico();
+        // historicoView.printHistorico();
         historicoView.writeHistorico();
     }
 }
