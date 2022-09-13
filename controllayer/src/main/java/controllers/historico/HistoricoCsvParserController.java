@@ -185,7 +185,7 @@ public class HistoricoCsvParserController implements CsvInterfaceModel<Historico
             disciplina.setCargaHoraria(histModelIterator.next().getCargaHoraria());
             disciplina.setDisciplinaTipo(histModelIterator.next().getDisciplinaTipo());
             disciplina.setGrade(histModelIterator.next().getVersaoGrade());
-
+            disciplina.setSelecionadaBarreira(false);
             disciplinaList.add(disciplina);
         }
 

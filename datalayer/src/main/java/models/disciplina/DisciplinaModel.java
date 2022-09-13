@@ -8,6 +8,7 @@ public class DisciplinaModel {
     private GradeType grade;
     private DisciplinaTipo disciplinaTipo;
     private Integer cargaHoraria;
+    private Boolean selecionadaBarreira; 
 
     public DisciplinaModel() {
         nome = "";
@@ -17,6 +18,10 @@ public class DisciplinaModel {
         grade = GradeType.NONE;
         disciplinaTipo = DisciplinaTipo.NONE;
         cargaHoraria = 0;
+    }
+
+    public Boolean getSelecionadaBarreira(){
+        return selecionadaBarreira;
     }
 
     public String getNome() {
@@ -46,7 +51,11 @@ public class DisciplinaModel {
     public Integer getCargaHoraria() {
         return cargaHoraria;
     }
-
+    
+    public void setSelecionadaBarreira(Boolean novoValor) {
+        this.selecionadaBarreira = novoValor;
+    }
+    
     public void setNome(String nome) {
         this.nome = nome;
     }

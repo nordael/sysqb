@@ -62,7 +62,7 @@ public class GuiPrincipal extends JFrame {
         // modelo
         table.setModel(tableModel);
         // barra de rolagem
-        table.setPreferredScrollableViewportSize(new Dimension(850, 300));
+        table.setPreferredScrollableViewportSize(new Dimension(1000, 300));
         // auto ajuste na altura da tabela
         table.setFillsViewportHeight(true);
         // selecionar somente uma linha
@@ -100,14 +100,18 @@ public class GuiPrincipal extends JFrame {
             }
         };
 
-        table.setPreferredScrollableViewportSize(table.getPreferredSize());
-        table.changeSelection(1, 1, false, false);
+        table.setPreferredScrollableViewportSize(new Dimension(900,300));
 
-        table.getColumnModel().getColumn(0).setPreferredWidth(650);
+        table.getColumnModel().getColumn(0).setPreferredWidth(500);
         table.getColumnModel().getColumn(1).setPreferredWidth(100);
-        table.getColumnModel().getColumn(2).setPreferredWidth(50);
-        table.getColumnModel().getColumn(3).setPreferredWidth(50);
-        table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        table.getColumnModel().getColumn(2).setPreferredWidth(100);
+        table.getColumnModel().getColumn(3).setPreferredWidth(100);
+        
+        //auto ajuste na altura da tabela
+        table.setFillsViewportHeight(true);
+        //selecionar somente uma linha
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+ 
         // add a table ao scroll pane
         JScrollPane scrollPane = new JScrollPane(table);
         this.add(scrollPane);

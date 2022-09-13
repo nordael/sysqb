@@ -5,6 +5,8 @@ import models.disciplina.DisciplinaModel;
 import java.util.List;
 import java.util.ArrayList;
 import java.awt.*;
+
+import javax.print.DocFlavor.STRING;
 import javax.swing.*;
 import javax.swing.table.*;
 
@@ -20,7 +22,9 @@ public class DisciplinasView extends AbstractTableModel {
     private final int PERIODO = 1;
     private final int CODIGO = 2;
     private final int CH = 3;
-    private final String colunas[] = { "Nome:", "Período:", "Código:", "Carga Horária" };
+	private final int SELECIONADA_QUEBRA=4;
+
+    private final String colunas[] = { "Nome:", "Período:", "Código:", "Carga Horária", "Selecionada" };
 
     @Override
     public int getColumnCount() {
@@ -33,6 +37,26 @@ public class DisciplinasView extends AbstractTableModel {
         // retorna o total de linhas na tabela
         return disciplinasDoPeriodo.size(); 
     }
+
+    @Override
+	public Class<?> getColumnClass(int columnIndex) {
+		//retorna o tipo de dado, para cada coluna
+		switch (columnIndex) {
+		case CODIGO:
+			return String.class;
+		case CH:
+			return int.class;
+		case PERIODO:
+			return int.class;
+		case NOME:
+			return String.class;
+		case SELECIONADA_QUEBRA:
+			return Boolean.class;
+		default:
+			throw new IndexOutOfBoundsException("Coluna Inv�lida!!!");
+		}
+
+	}
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
@@ -50,11 +74,34 @@ public class DisciplinasView extends AbstractTableModel {
                 return disciplina.getPeriodo();
             case NOME:
                 return disciplina.getNome();
+            case SELECIONADA_QUEBRA:
+                return disciplina.getSelecionadaBarreira();
             default:
                 throw new IndexOutOfBoundsException("Coluna Inválida!!!");
         }
     }
 
+    @Override
+	public boolean isCellEditable(int rowIndex, int columnIndex) {
+		//metodo identifica qual coluna � editavel
+		
+		//s� iremos editar a coluna BENEFICIO, 
+		//que ser� um checkbox por ser boolean
+		if(columnIndex == SELECIONADA_QUEBRA)
+			return true;
+		
+		return false;
+	}
+	
+	@Override
+	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+        DisciplinaModel disciplina = disciplinasDoPeriodo.get(rowIndex);
+		
+		if(columnIndex == SELECIONADA_QUEBRA){
+			disciplina.setSelecionadaBarreira((boolean)aValue);
+		}
+	}
+    
     @Override
     public String getColumnName(int columnIndex) {
         return colunas[columnIndex];
