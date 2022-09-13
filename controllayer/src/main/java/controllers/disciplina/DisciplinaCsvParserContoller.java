@@ -1,4 +1,4 @@
-package controllers.csvparser;
+package controllers.disciplina;
 
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
@@ -21,7 +21,6 @@ public class DisciplinaCsvParserContoller implements CsvInterfaceModel<Disciplin
         ArrayList<DisciplinaModel> disciplinas = new ArrayList<>();
         InputStream resource;
         Reader reader;
-        FileReader fileReader;
 
         try {
             resource = this.getClass().getClassLoader().getResourceAsStream(path);
@@ -51,33 +50,33 @@ public class DisciplinaCsvParserContoller implements CsvInterfaceModel<Disciplin
         while (csvReaderIterator.hasNext()) {
             String[] line = csvReaderIterator.next();
 
-            DisciplinaModel disciplinaModel = new DisciplinaModel();
-            disciplinaModel.setNome(line[fields.get(0)]);
-            disciplinaModel.setCodigo(line[fields.get(1)]);
+            DisciplinaModel historicoModel = new DisciplinaModel();
+            historicoModel.setNome(line[fields.get(0)]);
+            historicoModel.setCodigo(line[fields.get(1)]);
 
             if (!line[fields.get(2)].isBlank()) {
-                disciplinaModel.setPeriodo(Integer.parseInt(line[fields.get(2)]));
+                historicoModel.setPeriodo(Integer.parseInt(line[fields.get(2)]));
             } else {
-                disciplinaModel.setPeriodo(Integer.parseInt("0"));
+                historicoModel.setPeriodo(Integer.parseInt("0"));
             }
 
-            disciplinaModel.setDisponibilidade(
+            historicoModel.setDisponibilidade(
                     StatusDisciplina.fromString(line[fields.get(3)])
             );
-            disciplinaModel.setGrade(
+            historicoModel.setGrade(
                     GradeType.fromString(line[fields.get(4)])
             );
-            disciplinaModel.setDisciplinaTipo(
+            historicoModel.setDisciplinaTipo(
                     DisciplinaTipo.fromString(line[fields.get(5)])
             );
 
             if (!line[fields.get(6)].isBlank()) {
-                disciplinaModel.setCargaHoraria(Integer.parseInt(line[fields.get(6)]));
+                historicoModel.setCargaHoraria(Integer.parseInt(line[fields.get(6)]));
             } else {
-                disciplinaModel.setCargaHoraria(Integer.parseInt("0"));
+                historicoModel.setCargaHoraria(Integer.parseInt("0"));
             }
 
-            disciplinas.add(disciplinaModel);
+            disciplinas.add(historicoModel);
         }
 
         return disciplinas;

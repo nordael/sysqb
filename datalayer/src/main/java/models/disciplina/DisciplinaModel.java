@@ -1,6 +1,5 @@
 package models.disciplina;
 
-import models.disciplina.GradeType;
 public class DisciplinaModel {
     private String nome;
     private String codigo;
@@ -10,6 +9,15 @@ public class DisciplinaModel {
     private DisciplinaTipo disciplinaTipo;
     private Integer cargaHoraria;
 
+    public DisciplinaModel() {
+        nome = "";
+        codigo = "";
+        periodo = 0;
+        disponibilidade = StatusDisciplina.NONE;
+        grade = GradeType.NONE;
+        disciplinaTipo = DisciplinaTipo.NONE;
+        cargaHoraria = 0;
+    }
 
     public String getNome() {
         return nome;
