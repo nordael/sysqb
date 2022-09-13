@@ -1,6 +1,6 @@
 package sysqb.views.disciplinas;
 
-import controllers.csvparser.DisciplinaCsvParserContoller;
+import controllers.disciplina.DisciplinaCsvParserContoller;
 import models.disciplina.DisciplinaModel;
 import java.util.List;
 import java.util.ArrayList;
