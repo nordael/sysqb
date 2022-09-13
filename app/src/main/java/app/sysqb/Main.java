@@ -1,9 +1,6 @@
 package app.sysqb;
 
-import sysqb.views.disciplinas.DisciplinasView;
-import sysqb.views.fomulario.DadoAlunoView;
 import sysqb.views.guiPrincipal.GuiPrincipal;
-
 import sysqb.views.historico.HistoricoView;
 
 public class Main 
