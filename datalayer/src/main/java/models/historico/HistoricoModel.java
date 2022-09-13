@@ -1,55 +1,27 @@
 package models.historico;
 
 import java.util.ArrayList;
-import models.aluno.AlunoModel;
-import models.curso.CursoModel;
-import models.disciplina.DisciplinaModel;
 
 public class HistoricoModel {
-    private AlunoModel aluno;
-    private CursoModel curso;
-    private SemestreTipo semestreTipo;
-    private ArrayList<DisciplinaModel> disciplinasVencidas;
+    private ArrayList<HistoricoDisciplinaModel> historico;
 
     public HistoricoModel() {
-        this.aluno = new AlunoModel();
-        this.curso = new CursoModel();
-        this.semestreTipo = SemestreTipo.NONE;
-        this.disciplinasVencidas = new ArrayList<DisciplinaModel>();
+        historico = new ArrayList<>();
     }
 
-    public AlunoModel getAluno() {
-        return aluno;
+    public ArrayList<HistoricoDisciplinaModel> getHistorico() {
+        return historico;
     }
 
-    public CursoModel getCurso() {
-        return curso;
+    public void addDisciplina(HistoricoDisciplinaModel histDisciplina) {
+        historico.add(histDisciplina);
     }
 
-    public SemestreTipo getSemestreTipo() {
-        return semestreTipo;
+    public void removeDisciplina(HistoricoDisciplinaModel histDisciplina) {
+        historico.remove(histDisciplina);
     }
 
-    public ArrayList<DisciplinaModel> getDisciplinasVencidas() {
-        return disciplinasVencidas;
-    }
-
-    public void setAluno(AlunoModel aluno) {
-        this.aluno = aluno;
-    }
-
-    public void setCurso(CursoModel curso) {
-        this.curso = curso;
-    }
-
-    public void setSemestreTipo(SemestreTipo semestreTipo) {
-        this.semestreTipo = semestreTipo;
-    }
-
-    public void setDisciplinasVencidas(ArrayList<DisciplinaModel> disciplinasVencidas) {
-        if (!this.disciplinasVencidas.isEmpty()){
-            this.disciplinasVencidas.clear();
-        }
-        this.disciplinasVencidas.addAll(disciplinasVencidas);
+    public void setHistorico(ArrayList<HistoricoDisciplinaModel> historico) {
+        this.historico.addAll(historico);
     }
 }

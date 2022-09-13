@@ -21,7 +21,6 @@ public class DisciplinaCsvParserContoller implements CsvInterfaceModel<Disciplin
         ArrayList<DisciplinaModel> disciplinas = new ArrayList<>();
         InputStream resource;
         Reader reader;
-        FileReader fileReader;
 
         try {
             resource = this.getClass().getClassLoader().getResourceAsStream(path);
