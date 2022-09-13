@@ -1,1 +1,17 @@
 /.metadata/
+.settings/org.eclipse.core.resources.prefs
+app/.classpath
+app/.settings/org.eclipse.core.resources.prefs
+app/.settings/org.eclipse.jdt.core.prefs
+controllayer/.classpath
+controllayer/.settings/org.eclipse.core.resources.prefs
+controllayer/.settings/org.eclipse.jdt.core.prefs
+controllayer/target/classes/controllers/formulario/DadoAlunoController.class
+datalayer/.classpath
+datalayer/.settings/org.eclipse.core.resources.prefs
+datalayer/.settings/org.eclipse.jdt.core.prefs
+datalayer/target/classes/models/formulario/DadoAlunoModel.class
+presentationlayer/.classpath
+presentationlayer/.settings/org.eclipse.core.resources.prefs
+presentationlayer/.settings/org.eclipse.jdt.core.prefs
+presentationlayer/target/classes/sysqb/views/fomulario/DadoAlunoView.class

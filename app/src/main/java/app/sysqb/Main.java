@@ -2,11 +2,13 @@ package app.sysqb;
 
 import sysqb.views.disciplinas.DisciplinasView;
 import sysqb.views.fomulario.DadoAlunoView;
+import sysqb.views.guiPrincipal.GuiPrincipal;
+
 
 public class Main 
 {
     public static void main(String[] args) {
-        DisciplinasView disciplinasView = new DisciplinasView();
-        disciplinasView.printDisciplinas();
+        GuiPrincipal principal=new GuiPrincipal();
+        principal.setVisible(true);
     }
 }
