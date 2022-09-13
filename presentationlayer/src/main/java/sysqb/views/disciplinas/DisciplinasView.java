@@ -64,7 +64,7 @@ public class DisciplinasView extends AbstractTableModel {
         this.disciplinaCsvParserContoller = new DisciplinaCsvParserContoller();
         this.fields = List.of(5, 3, 6, 10, 1, 8, 9);
         this.periodo = 1;
-        this.disciplinasDoPeriodo = getListaDisciplinas(this.periodo, 2019);
+        this.disciplinasDoPeriodo = getListaDisciplinas(this.periodo, 2011);
     }
 
     public DisciplinasView(int periodo, int grade) {

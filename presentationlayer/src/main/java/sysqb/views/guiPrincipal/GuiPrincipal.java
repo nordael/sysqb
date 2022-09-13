@@ -30,7 +30,7 @@ public class GuiPrincipal extends JFrame{
     private JButton btnPrev=new JButton("Período anterior");
     
     private int periodo = 1;
-    private int grade = 2019;
+    private int grade = 2011;
 
     public GuiPrincipal() {
         //setando respectivamente...
@@ -69,7 +69,9 @@ public class GuiPrincipal extends JFrame{
                
                 if (dicionarioMaterias.containsKey(codigoDisci)){
                     HistoricoDisciplinaModel disciplina = dicionarioMaterias.get(codigoDisci);
-                    SituacaoTipo situacao = disciplina.getSituacao();
+                    SituacaoTipo situacao = disciplina.getSituacao(); 
+                    
+                    // System.out.println("PASSOU"+situacao);
 
                     if (situacao.getSituacao().equals("Aprovado")){
                         c.setBackground(Color.green);
@@ -134,7 +136,7 @@ public class GuiPrincipal extends JFrame{
             int curPeriod = getPeriodo(); 
             if (curPeriod > 1){
                 setPeriodo(curPeriod-1);
-                tableModel.handlePeriodChange(curPeriod-1, 2019);
+                tableModel.handlePeriodChange(curPeriod-1, 2011);
             }
         }
     };
@@ -146,7 +148,7 @@ public class GuiPrincipal extends JFrame{
             int curPeriod =getPeriodo(); 
             if (curPeriod < 8){
                 setPeriodo(curPeriod+1);
-                tableModel.handlePeriodChange(curPeriod+1, 2019);
+                tableModel.handlePeriodChange(curPeriod+1, 2011);
             }
         }
     };
