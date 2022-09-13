@@ -11,5 +11,6 @@ public class Main
         principal.setVisible(true);
         HistoricoView historicoView = new HistoricoView();
         historicoView.printHistorico();
+        historicoView.writeHistorico();
     }
 }
