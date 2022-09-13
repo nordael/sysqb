@@ -9,7 +9,7 @@ import javax.swing.table.AbstractTableModel;
 public class DisciplinasView extends AbstractTableModel{
     private DisciplinaCsvParserContoller disciplinaCsvParserContoller;
     private List<Integer> fields;
-    private final List<DisciplinaModel> disciplinasDoPeriodo;// usamos como dados uma lista genérica de Disciplina
+    private List<DisciplinaModel> disciplinasDoPeriodo;// usamos como dados uma lista genérica de Disciplina
 
     private int periodo; 
 
@@ -62,22 +62,28 @@ public class DisciplinasView extends AbstractTableModel{
         this.disciplinaCsvParserContoller = new DisciplinaCsvParserContoller();
         this.fields = List.of(5,3,6,10,1,8,9);
         this.periodo = 1;
-        this.disciplinasDoPeriodo = getListaDisciplinas(this.periodo);  
+        this.disciplinasDoPeriodo = getListaDisciplinas(this.periodo, 2019);  
     }
 
-    public DisciplinasView(List<Integer> fields){
+    public DisciplinasView(int periodo, int grade){
         this.disciplinaCsvParserContoller = new DisciplinaCsvParserContoller();
-        this.fields = fields;
-        this.periodo = 1;
-        this.disciplinasDoPeriodo = getListaDisciplinas(this.periodo); 
+        this.disciplinasDoPeriodo = getListaDisciplinas(periodo, grade); 
     }
 
-    private List<DisciplinaModel> getListaDisciplinas(int periodo){
-        List<DisciplinaModel> disciplinas = disciplinaCsvParserContoller.csvReader("disciplinas_2019.csv", this.fields);
+    private List<DisciplinaModel> getListaDisciplinas(int periodo, int grade){
+        List<DisciplinaModel> disciplinas = new ArrayList<DisciplinaModel>(); 
+
+        if (grade == 2011){
+            disciplinas = disciplinaCsvParserContoller.csvReader("disciplinas_2011.csv", this.fields);
+        }else{
+            disciplinas = disciplinaCsvParserContoller.csvReader("disciplinas_2019.csv", this.fields);
+        }
+
         List<DisciplinaModel> disciplinasPaginadas = new ArrayList<DisciplinaModel>(); 
 
         for (DisciplinaModel disciplina : disciplinas) {
-            if (disciplina.getPeriodo() == this.periodo){
+            
+            if (disciplina.getPeriodo() == periodo){
                 disciplinasPaginadas.add(disciplina); 
             }
         }
@@ -85,6 +91,11 @@ public class DisciplinasView extends AbstractTableModel{
         return disciplinasPaginadas;
     }
 
+    // funcao para lidar com mudanca de periodo
+    public void handlePeriodChange(int periodo, int grade) {
+        this.disciplinasDoPeriodo = getListaDisciplinas(periodo, grade); 
+        fireTableDataChanged();
+    }
 
     public void printDisciplinas(){
         List<DisciplinaModel> disciplinas = disciplinaCsvParserContoller.csvReader("disciplinas_2019.csv", this.fields);

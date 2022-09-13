@@ -2,6 +2,8 @@ package sysqb.views.guiPrincipal;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
  
@@ -19,11 +21,16 @@ public class GuiPrincipal extends JFrame{
     private JTable table=new JTable();
     private DisciplinasView tableModel;
     
- 
+    private JButton btnNext=new JButton("Próximo período");
+    private JButton btnPrev=new JButton("Período anterior");
+    
+    private int periodo = 1;
+    private int grade = 2019;
+
     public GuiPrincipal() {
         //setando respectivamente...
         //titulo
-        this.setTitle("Exemplo de Table Model");
+        this.setTitle("Sistema de Quebra de Barreira");
         //layout
         this.setLayout(new FlowLayout());
         //tamanho do JFrame
@@ -45,9 +52,55 @@ public class GuiPrincipal extends JFrame{
         table.setFillsViewportHeight(true);
         //selecionar somente uma linha
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
- 
+        
+        
         //add a table ao scroll pane
         JScrollPane scrollPane=new JScrollPane(table);
         this.add(scrollPane);
+        
+        //add eventos aos botões
+        btnNext.addActionListener(btnNextPageListener);
+        btnPrev.addActionListener(btnPreviousPageListener);
+       
+        //add botões ao JFrame
+        this.add(btnNext);
+        this.add(btnPrev);
     }
+
+    public int getPeriodo() {
+        return periodo;
+    }
+
+    public void setPeriodo(int periodo) {
+        this.periodo = periodo;
+    }
+
+    /*
+     * Eventos do botões
+     * */ 
+    
+     //evento p ir para periodo anterior
+    private ActionListener btnPreviousPageListener=new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int curPeriod = getPeriodo(); 
+            if (curPeriod > 1){
+                setPeriodo(curPeriod-1);
+                tableModel.handlePeriodChange(curPeriod-1, 2019);
+            }
+        }
+    };
+
+     //evento p ir para proximo periodo
+    private ActionListener btnNextPageListener=new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int curPeriod =getPeriodo(); 
+            if (curPeriod < 8){
+                setPeriodo(curPeriod+1);
+                tableModel.handlePeriodChange(curPeriod+1, 2019);
+            }
+        }
+    };
+    
 }
