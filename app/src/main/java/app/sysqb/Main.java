@@ -1,5 +1,6 @@
 package app.sysqb;
 
+import sysqb.views.disciplinas.DisciplinasView;
 import sysqb.views.guiPrincipal.GuiPrincipal;
 import sysqb.views.historico.HistoricoView;
 
@@ -10,5 +11,6 @@ public class Main
         principal.setVisible(true);
         HistoricoView historicoView = new HistoricoView();
         historicoView.printHistorico();
+        historicoView.writeHistorico();
     }
 }
