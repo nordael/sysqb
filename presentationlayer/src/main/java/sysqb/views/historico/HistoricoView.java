@@ -22,6 +22,12 @@ public class HistoricoView {
         this.fields = fields;
     }
 
+    public List<HistoricoDisciplinaModel> getListaMateriasHistorico(){
+        List<HistoricoDisciplinaModel> historicoDisciplina = csvParserController
+                .csvReader("historico.csv", this.fields);
+        return historicoDisciplina; 
+    }
+
     public void printHistorico(){
         List<HistoricoDisciplinaModel> historicoDisciplina = csvParserController
                 .csvReader("historico.csv", this.fields);
