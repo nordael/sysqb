@@ -11,6 +11,9 @@ import models.historico.*;
 
 import java.io.*;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -100,14 +103,15 @@ public class HistoricoCsvParserController implements CsvInterfaceModel<Historico
     @Override
     public void csvWriter(String path, List<Integer> fields, List<HistoricoDisciplinaModel> list) {
         URL resourceUrl;
+        Path resourcePath;
         File file;
         OutputStream resource;
-        Writer writer = null;
+        Writer writer = Writer.nullWriter();
 
         try {
-            resourceUrl = getClass().getResource(path);
-            file = new File(resourceUrl.getPath());
+            file = Paths.get("controllayer/src/main/resources/" + path).toFile();
             resource = new FileOutputStream(file);
+            writer = new OutputStreamWriter(resource);
 
         } catch (Exception e) {
             System.out.println("Error: Não foi possivel escrever o arquivo csv!" + e.getMessage());
@@ -116,7 +120,7 @@ public class HistoricoCsvParserController implements CsvInterfaceModel<Historico
         ICSVWriter csvWriter = null;
         CSVParser parser = new CSVParserBuilder()
                 .withSeparator(';')
-                .withQuoteChar('\"').build();
+                .build();
 
         try {
             csvWriter = new CSVWriterBuilder(writer)
@@ -149,6 +153,7 @@ public class HistoricoCsvParserController implements CsvInterfaceModel<Historico
             line[fields.get(14)] = historicoDisciplinaModel.getStatusAprovacao().getStatusAprovacao();
 
             csvWriter.writeNext(line);
+            csvWriter.flushQuietly();
         }
     }
 

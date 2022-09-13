@@ -36,4 +36,10 @@ public class HistoricoView {
             System.out.println(historico.getCodigoDisciplina() + " - " + historico.getGrr());
         }
     }
+    public void writeHistorico(){
+        List<HistoricoDisciplinaModel> historicoDisciplina = csvParserController
+                .csvReader("historico.csv", this.fields);
+
+        csvParserController.csvWriter("historico_tmp.csv", this.fields, historicoDisciplina);
+    }
 }
