@@ -51,10 +51,11 @@ public class HistoricoCsvParserController implements CsvInterfaceModel<Historico
             System.out.println("Error: Não foi possivel ler o arquivo csv!" + e.getMessage());
             return null;
         }
-        HistoricoDisciplinaModel historicoDisciplinaModel = new HistoricoDisciplinaModel();
+
         Iterator<String[]> csvReaderIterator = csvReader.iterator();
         while (csvReaderIterator.hasNext()) {
             String[] line = csvReaderIterator.next();
+            HistoricoDisciplinaModel historicoDisciplinaModel = new HistoricoDisciplinaModel();
 
             historicoDisciplinaModel.setGrr(line[fields.get(0)]);
             historicoDisciplinaModel.setNomeAluno(line[fields.get(1)]);
