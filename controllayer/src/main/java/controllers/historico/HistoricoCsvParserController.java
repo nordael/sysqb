@@ -110,7 +110,7 @@ public class HistoricoCsvParserController implements CsvInterfaceModel<Historico
         Writer writer = Writer.nullWriter();
 
         try {
-            file = Paths.get("controllayer/src/main/resources/" + path).toFile();
+            file = Paths.get(path).toFile();
             resource = new FileOutputStream(file);
             writer = new OutputStreamWriter(resource);
 
