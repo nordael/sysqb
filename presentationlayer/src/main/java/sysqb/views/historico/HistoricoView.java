@@ -40,6 +40,6 @@ public class HistoricoView {
         List<HistoricoDisciplinaModel> historicoDisciplina = csvParserController
                 .csvReader("historico.csv", this.fields);
 
-        // csvParserController.csvWriter("historico_tmp.csv", this.fields, historicoDisciplina);
+        csvParserController.csvWriter("historico_tmp.csv", this.fields, historicoDisciplina);
     }
 }
