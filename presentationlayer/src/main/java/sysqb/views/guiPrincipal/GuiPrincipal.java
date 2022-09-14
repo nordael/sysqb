@@ -1,24 +1,17 @@
 package sysqb.views.guiPrincipal;
 
-import sysqb.views.historico.HistoricoView;
-import models.historico.HistoricoModel;
-import models.historico.SituacaoTipo;
 import models.historico.HistoricoDisciplinaModel;
+import models.historico.SituacaoTipo;
+import sysqb.views.disciplinas.DisciplinasView;
+import sysqb.views.historico.HistoricoView;
 
-import java.util.*;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import javax.swing.*;
+import javax.swing.table.TableCellRenderer;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
-import javax.swing.JOptionPane;
-
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.table.*;
-
-import sysqb.views.disciplinas.DisciplinasView;
 
 public class GuiPrincipal extends JFrame {
 
@@ -81,15 +74,19 @@ public class GuiPrincipal extends JFrame {
                     SituacaoTipo situacao = disciplina.getSituacao();
 
                     // System.out.println("PASSOU"+situacao);
-
-                    if (situacao.getSituacao().equals("Aprovado")) {
-                        c.setBackground(Color.green);
-                    } else if (situacao.getSituacao().equals("Reprovado por nota")) {
-                        c.setBackground(Color.red);
-                    } else if (situacao.getSituacao().equals("Reprovado por frequência")) {
-                        c.setBackground(Color.red);
-                    } else if (situacao.getSituacao().equals("Matrícula")) {
-                        c.setBackground(Color.blue);
+                    switch (situacao){
+                        case APROVADO:
+                            c.setBackground(Color.GREEN);
+                            break;
+                        case REPNOTA:
+                            c.setBackground(Color.RED);
+                            break;
+                        case REPFREQ:
+                            c.setBackground(Color.RED);
+                            break;
+                        case MATRICULA:
+                            c.setBackground(Color.BLUE);
+                            break;
                     }
                 } else {
                     // se a disciplina nao esta no historico, entao nao foi cursada
