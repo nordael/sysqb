@@ -109,7 +109,7 @@ public class GuiPrincipal extends JFrame {
         
         //auto ajuste na altura da tabela
         table.setFillsViewportHeight(true);
-        //selecionar somente uma linha
+        // selecionar somente uma linha
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
  
         // add a table ao scroll pane
