@@ -4,10 +4,10 @@ import controllers.disciplina.DisciplinaCsvParserContoller;
 import models.disciplina.DisciplinaModel;
 import java.util.List;
 import java.util.ArrayList;
-import java.awt.*;
+//import java.awt.*;
 
-import javax.print.DocFlavor.STRING;
-import javax.swing.*;
+//import javax.print.DocFlavor.STRING;
+//import javax.swing.*;
 import javax.swing.table.*;
 
 public class DisciplinasView extends AbstractTableModel {

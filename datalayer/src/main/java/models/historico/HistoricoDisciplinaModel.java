@@ -17,7 +17,7 @@ public class HistoricoDisciplinaModel {
     private Integer cargaHoraria;
     private String codigoDisciplina;
     private DisciplinaTipo disciplinaTipo;
-    private String getNomeDisciplina;
+//    private String getNomeDisciplina;
     private Integer frequencia;
     private StatusAprovacao statusAprovacao;
 
