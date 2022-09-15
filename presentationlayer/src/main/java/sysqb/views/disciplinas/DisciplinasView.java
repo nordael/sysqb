@@ -4,7 +4,6 @@ import controllers.disciplina.DisciplinaCsvParserContoller;
 import models.disciplina.DisciplinaModel;
 import java.util.List;
 import java.util.ArrayList;
-
 import javax.swing.table.*;
 
 public class DisciplinasView extends AbstractTableModel {

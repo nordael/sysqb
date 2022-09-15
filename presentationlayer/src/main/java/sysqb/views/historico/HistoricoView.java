@@ -1,9 +1,9 @@
 package sysqb.views.historico;
 
 import controllers.historico.HistoricoCsvParserController;
-import models.disciplina.DisciplinaModel;
+//import models.disciplina.DisciplinaModel;
 import models.historico.HistoricoDisciplinaModel;
-import models.historico.HistoricoModel;
+//import models.historico.HistoricoModel;
 
 import java.util.List;
 
