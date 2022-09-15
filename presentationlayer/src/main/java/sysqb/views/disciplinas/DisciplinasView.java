@@ -4,10 +4,7 @@ import controllers.disciplina.DisciplinaCsvParserContoller;
 import models.disciplina.DisciplinaModel;
 import java.util.List;
 import java.util.ArrayList;
-import java.awt.*;
 
-import javax.print.DocFlavor.STRING;
-import javax.swing.*;
 import javax.swing.table.*;
 
 public class DisciplinasView extends AbstractTableModel {
@@ -15,6 +12,7 @@ public class DisciplinasView extends AbstractTableModel {
     private List<Integer> fields;
     private List<DisciplinaModel> disciplinasDoPeriodo;// usamos como dados uma lista genérica de Disciplina
     private List<String> disciplinasSelecionadas = new ArrayList<String>();// usamos como dados uma lista genérica de Disciplina
+
 
     private int periodo;
 
@@ -95,11 +93,9 @@ public class DisciplinasView extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        // metodo identifica qual coluna � editavel
-
-        // s� iremos editar a coluna BENEFICIO,
-        // que ser� um checkbox por ser boolean
-        if (columnIndex == SELECIONADA_QUEBRA)
+        DisciplinaModel disciplina = disciplinasDoPeriodo.get(rowIndex);
+            
+        if (columnIndex == SELECIONADA_QUEBRA )
             return true;
 
         return false;
