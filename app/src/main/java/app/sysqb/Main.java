@@ -1,15 +1,16 @@
 package app.sysqb;
 
 
-import sysqb.views.guiPrincipal.GuiPrincipal;
+import sysqb.views.home.HomeView;
 
-public class Main 
+import javax.swing.*;
+import java.util.Arrays;
+
+public class Main
 {
     public static void main(String[] args) {
-        GuiPrincipal principal=new GuiPrincipal();
-        principal.setVisible(true);
-        // HistoricoView historicoView = new HistoricoView();
-        // historicoView.printHistorico();
-        // historicoView.writeHistorico();
+        HomeView homeView = new HomeView();
+        homeView.setVisible(true);
+        homeView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }

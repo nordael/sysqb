@@ -3,7 +3,7 @@ package sysqb.views.guiPrincipal;
 import models.historico.HistoricoDisciplinaModel;
 import models.historico.SituacaoTipo;
 import sysqb.views.disciplinas.DisciplinasView;
-import sysqb.views.historico.HistoricoView;
+import sysqb.views.historico.HistoricoPrinterView;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
@@ -36,7 +36,7 @@ public class GuiPrincipal extends JFrame {
 
         // setando respectivamente...
         // titulo
-        this.setTitle("Sistema de Quebra de Barreira");
+        this.setTitle("Sistema de Quebra de Barreira - SysQB");
         // layout
         this.setLayout(new FlowLayout());
         // tamanho do JFrame
@@ -48,7 +48,7 @@ public class GuiPrincipal extends JFrame {
 
         // neste ponto é criado o modelo da JTable
         tableModel = new DisciplinasView();
-        HistoricoView historicoView = new HistoricoView();
+        HistoricoPrinterView historicoView = new HistoricoPrinterView();
         setDisciplinasCursadasDic(historicoView.getListaMateriasHistorico());
 
         // setando propriedades da tabela...
