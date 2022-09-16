@@ -1,0 +1,59 @@
+JFDML JFormDesigner: "7.0.7.0.1134" Java: "17.0.3" encoding: "UTF-8"
+
+new FormModel {
+	"i18n.autoExternalize": true
+	"i18n.bundleName": "strings"
+	"i18n.keyPrefix": "ConsultaMatriculaView"
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+			"$layoutConstraints": "hidemode 3"
+			"$columnConstraints": "[fill][fill][fill]"
+			"$rowConstraints": "[][][]"
+		} ) {
+			name: "this"
+			"$sizePolicy": 1
+			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+				name: "menuBar1"
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu1"
+					"text": new FormMessage( null, "ConsultaMatriculaView.menu1.text" )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem3"
+						"text": new FormMessage( null, "ConsultaMatriculaView.menuItem3.text" )
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "openFormularioView", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JSeparator" ) {
+						name: "separator1"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem6"
+						"text": new FormMessage( null, "ConsultaMatriculaView.menuItem6.text" )
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "closeApp", true ) )
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu3"
+					"text": new FormMessage( null, "ConsultaMatriculaView.menu3.text" )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem1"
+						"text": new FormMessage( null, "ConsultaMatriculaView.menuItem1.text" )
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "openHistoricoView", true ) )
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu2"
+					"text": new FormMessage( null, "ConsultaMatriculaView.menu2.text" )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem4"
+						"text": new FormMessage( null, "ConsultaMatriculaView.menuItem4.text" )
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "openAboutView", true ) )
+					} )
+				} )
+			}
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 615, 500 )
+		} )
+	}
+}
