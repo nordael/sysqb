@@ -153,11 +153,11 @@ public class GuiPrincipal extends JFrame {
     public void setDisciplinasCursadasDic(List<HistoricoDisciplinaModel> listaDisciplinasHist) {
         for (HistoricoDisciplinaModel disciplinaHistorico : listaDisciplinasHist) {
             String codigoDisci = disciplinaHistorico.getCodigoDisciplina();
-            String situacao = disciplinaHistorico.getSituacao().getSituacao();
+            SituacaoTipo situacao = disciplinaHistorico.getSituacao();
             // checa se ainda nao existe essa materia no dicionario
             // checa se caso seja existente, eh de algum periodo anterior
-            if (!disciplinasCursadasDic.containsKey(codigoDisci) || situacao.equals("Matrícula")
-                    || situacao.equals("Aprovado")) {
+            if (!disciplinasCursadasDic.containsKey(codigoDisci) || situacao == SituacaoTipo.MATRICULA
+                    || situacao == SituacaoTipo.APROVADO) {
                 disciplinasCursadasDic.put(disciplinaHistorico.getCodigoDisciplina(), disciplinaHistorico);
             }
         }
@@ -195,11 +195,6 @@ public class GuiPrincipal extends JFrame {
             ExportaPedido exportarPedido = new ExportaPedido();
             
             exportarPedido.writeList(discipSelecionadas, disciplinasCursadasDic, tableModel.getListaDisciplinasCurso(getGrade()));
-
-            // for (String disciplina : discipSelecionadas){
-            // System.out.println(disciplina);
-            // }
-
         }
     };
     // evento p ir para periodo anterior
