@@ -10,9 +10,9 @@ import models.disciplina.GradeType;
 import models.historico.*;
 
 import java.io.*;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
+//import java.net.URL;
+//import java.nio.file.Files;
+//import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -103,14 +103,14 @@ public class HistoricoCsvParserController implements CsvInterfaceModel<Historico
 
     @Override
     public void csvWriter(String path, List<Integer> fields, List<HistoricoDisciplinaModel> list) {
-        URL resourceUrl;
-        Path resourcePath;
+//        URL resourceUrl;
+//        Path resourcePath;
         File file;
         OutputStream resource;
         Writer writer = Writer.nullWriter();
 
         try {
-            file = Paths.get("controllayer/src/main/resources/" + path).toFile();
+            file = Paths.get(path).toFile();
             resource = new FileOutputStream(file);
             writer = new OutputStreamWriter(resource);
 

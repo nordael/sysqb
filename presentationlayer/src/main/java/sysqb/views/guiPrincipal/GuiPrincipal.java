@@ -1,24 +1,19 @@
 package sysqb.views.guiPrincipal;
 
-import sysqb.views.historico.HistoricoView;
-import models.historico.HistoricoModel;
-import models.historico.SituacaoTipo;
+import controllers.historico.ExportaPedido;
 import models.historico.HistoricoDisciplinaModel;
+import models.historico.SituacaoTipo;
+import sysqb.views.disciplinas.DisciplinasView;
+import sysqb.views.historico.HistoricoPrinterView;
+import controllers.historico.HistoricoController;
 
-import java.util.*;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import javax.swing.*;
+import javax.swing.table.TableCellRenderer;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
-import javax.swing.JOptionPane;
-
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.table.*;
-
-import sysqb.views.disciplinas.DisciplinasView;
 
 public class GuiPrincipal extends JFrame {
 
@@ -26,24 +21,25 @@ public class GuiPrincipal extends JFrame {
     private DisciplinasView tableModel;
 
     private Hashtable<String, HistoricoDisciplinaModel> disciplinasCursadasDic = new Hashtable<String, HistoricoDisciplinaModel>();
-
+   
     private JButton btnNext = new JButton("Próximo período");
     private JButton btnPrev = new JButton("Período anterior");
+    private JButton btnGerar = new JButton("Gerar Pedido");
 
     private int periodo;
     private int grade;
 
     public GuiPrincipal() {
 
-        Integer[] options = { 2019, 2011};
+        Integer[] options = { 2019, 2011 };
         int grade = (Integer) JOptionPane.showInputDialog(null, "Escolha sua grade curricular:",
                 "Grade Curricular", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
-        setGrade(grade); 
+        setGrade(grade);
 
         // setando respectivamente...
         // titulo
-        this.setTitle("Sistema de Quebra de Barreira");
+        this.setTitle("Sistema de Quebra de Barreira - SysQB");
         // layout
         this.setLayout(new FlowLayout());
         // tamanho do JFrame
@@ -55,9 +51,9 @@ public class GuiPrincipal extends JFrame {
 
         // neste ponto é criado o modelo da JTable
         tableModel = new DisciplinasView();
-        HistoricoView historicoView = new HistoricoView();
+        HistoricoPrinterView historicoView = new HistoricoPrinterView();
         setDisciplinasCursadasDic(historicoView.getListaMateriasHistorico());
-
+        
         // setando propriedades da tabela...
         // modelo
         table.setModel(tableModel);
@@ -75,43 +71,66 @@ public class GuiPrincipal extends JFrame {
             public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
                 Component c = super.prepareRenderer(renderer, row, column);
                 String codigoDisci = (String) getValueAt(row, 2);
+                int periodoDisci = (int) getValueAt(row, 1);
 
                 if (dicionarioMaterias.containsKey(codigoDisci)) {
                     HistoricoDisciplinaModel disciplina = dicionarioMaterias.get(codigoDisci);
                     SituacaoTipo situacao = disciplina.getSituacao();
 
-                    // System.out.println("PASSOU"+situacao);
-
-                    if (situacao.getSituacao().equals("Aprovado")) {
-                        c.setBackground(Color.green);
-                    } else if (situacao.getSituacao().equals("Reprovado por nota")) {
-                        c.setBackground(Color.red);
-                    } else if (situacao.getSituacao().equals("Reprovado por frequência")) {
-                        c.setBackground(Color.red);
-                    } else if (situacao.getSituacao().equals("Matrícula")) {
-                        c.setBackground(Color.blue);
+                    switch (situacao) {
+                        case APROVADO:
+                            c.setBackground(Color.GREEN);
+                            break;
+                        case REPNOTA:
+                            if (periodoDisci < 4) {
+                                c.setBackground(Color.RED);
+                            } else {
+                                c.setBackground(Color.GRAY);
+                            }
+                            break;
+                        case REPFREQ:
+                            if (periodoDisci < 4) {
+                                c.setBackground(Color.RED);
+                            } else {
+                                c.setBackground(Color.GRAY);
+                            }
+                            break;
+                        case MATRICULA:
+                            c.setBackground(Color.BLUE);
+                            break;
+                        case NONE:
+                            if (periodoDisci < 4) {
+                                c.setBackground(Color.RED);
+                            } else {
+                                c.setBackground(Color.GRAY);
+                            }
+                            break;
                     }
                 } else {
                     // se a disciplina nao esta no historico, entao nao foi cursada
-                    c.setBackground(Color.gray);
+                    if (periodoDisci < 4) {
+                        c.setBackground(Color.RED);
+                    } else {
+                        c.setBackground(Color.GRAY);
+                    }
                 }
 
                 return c;
             }
         };
 
-        table.setPreferredScrollableViewportSize(new Dimension(900,300));
+        table.setPreferredScrollableViewportSize(new Dimension(900, 300));
 
         table.getColumnModel().getColumn(0).setPreferredWidth(500);
         table.getColumnModel().getColumn(1).setPreferredWidth(100);
         table.getColumnModel().getColumn(2).setPreferredWidth(100);
         table.getColumnModel().getColumn(3).setPreferredWidth(100);
-        
-        //auto ajuste na altura da tabela
+
+        // auto ajuste na altura da tabela
         table.setFillsViewportHeight(true);
         // selecionar somente uma linha
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
- 
+
         // add a table ao scroll pane
         JScrollPane scrollPane = new JScrollPane(table);
         this.add(scrollPane);
@@ -119,15 +138,28 @@ public class GuiPrincipal extends JFrame {
         // add eventos aos botões
         btnNext.addActionListener(btnNextPageListener);
         btnPrev.addActionListener(btnPreviousPageListener);
+        btnGerar.addActionListener(btnGerarPageListener);
 
         // add botões ao JFrame
+        this.add(new JLabel(
+                "<html>Descrição: <font color='green'>Aprovadas </font><font color='blue'>Matriculadas </font><font color='gray'>Disponível </font><font color='red'>Disponível dentro da barreira </font></html>"));
+
         this.add(btnNext);
         this.add(btnPrev);
+        this.add(btnGerar);
+
     }
 
     public void setDisciplinasCursadasDic(List<HistoricoDisciplinaModel> listaDisciplinasHist) {
         for (HistoricoDisciplinaModel disciplinaHistorico : listaDisciplinasHist) {
-            disciplinasCursadasDic.put(disciplinaHistorico.getCodigoDisciplina(), disciplinaHistorico);
+            String codigoDisci = disciplinaHistorico.getCodigoDisciplina();
+            SituacaoTipo situacao = disciplinaHistorico.getSituacao();
+            // checa se ainda nao existe essa materia no dicionario
+            // checa se caso seja existente, eh de algum periodo anterior
+            if (!disciplinasCursadasDic.containsKey(codigoDisci) || situacao == SituacaoTipo.MATRICULA
+                    || situacao == SituacaoTipo.APROVADO) {
+                disciplinasCursadasDic.put(disciplinaHistorico.getCodigoDisciplina(), disciplinaHistorico);
+            }
         }
     }
 
@@ -155,6 +187,16 @@ public class GuiPrincipal extends JFrame {
      * Eventos do botões
      */
 
+    private ActionListener btnGerarPageListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            List<String> discipSelecionadas = tableModel.getDisciplinasSelecionadas();
+            // TODO ADICIONAR FUNCAO PARA GERAR O PEDIDO ATRAVES DAS DISCIPLINAS
+            ExportaPedido exportarPedido = new ExportaPedido();
+            
+            exportarPedido.writeList(discipSelecionadas, disciplinasCursadasDic, tableModel.getListaDisciplinasCurso(getGrade()));
+        }
+    };
     // evento p ir para periodo anterior
     private ActionListener btnPreviousPageListener = new ActionListener() {
         @Override
