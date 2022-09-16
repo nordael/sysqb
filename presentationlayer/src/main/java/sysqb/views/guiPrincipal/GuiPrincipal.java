@@ -1,9 +1,11 @@
 package sysqb.views.guiPrincipal;
 
+import controllers.historico.ExportaPedido;
 import models.historico.HistoricoDisciplinaModel;
 import models.historico.SituacaoTipo;
 import sysqb.views.disciplinas.DisciplinasView;
 import sysqb.views.historico.HistoricoView;
+import models.aluno.AlunoModel;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
@@ -50,6 +52,7 @@ public class GuiPrincipal extends JFrame {
         // neste ponto é criado o modelo da JTable
         tableModel = new DisciplinasView();
         HistoricoView historicoView = new HistoricoView();
+
         setDisciplinasCursadasDic(historicoView.getListaMateriasHistorico());
 
         // setando propriedades da tabela...
@@ -80,17 +83,25 @@ public class GuiPrincipal extends JFrame {
                             c.setBackground(Color.GREEN);
                             break;
                         case REPNOTA:
-                            c.setBackground(Color.RED);
+                            if (periodoDisci < 4) {
+                                c.setBackground(Color.RED);
+                            } else {
+                                c.setBackground(Color.GRAY);
+                            }
                             break;
                         case REPFREQ:
-                            c.setBackground(Color.RED);
+                            if (periodoDisci < 4) {
+                                c.setBackground(Color.RED);
+                            } else {
+                                c.setBackground(Color.GRAY);
+                            }
                             break;
                         case MATRICULA:
                             c.setBackground(Color.BLUE);
                             break;
                         case NONE:
                             if (periodoDisci < 4) {
-                                c.setBackground(Color.YELLOW);
+                                c.setBackground(Color.RED);
                             } else {
                                 c.setBackground(Color.GRAY);
                             }
@@ -99,7 +110,7 @@ public class GuiPrincipal extends JFrame {
                 } else {
                     // se a disciplina nao esta no historico, entao nao foi cursada
                     if (periodoDisci < 4) {
-                        c.setBackground(Color.YELLOW);
+                        c.setBackground(Color.RED);
                     } else {
                         c.setBackground(Color.GRAY);
                     }
@@ -132,7 +143,7 @@ public class GuiPrincipal extends JFrame {
 
         // add botões ao JFrame
         this.add(new JLabel(
-                "<html>Descrição: <font color='green'>Aprovadas </font><font color='blue'>Matriculadas </font><font color='gray'>Disponível</font><font color='yellow'>Disponível dentro da barreira</font></html>"));
+                "<html>Descrição: <font color='green'>Aprovadas </font><font color='blue'>Matriculadas </font><font color='gray'>Disponível </font><font color='red'>Disponível dentro da barreira </font></html>"));
 
         this.add(btnNext);
         this.add(btnPrev);
@@ -182,6 +193,8 @@ public class GuiPrincipal extends JFrame {
         public void actionPerformed(ActionEvent e) {
             List<String> discipSelecionadas = tableModel.getDisciplinasSelecionadas();
             // TODO ADICIONAR FUNCAO PARA GERAR O PEDIDO ATRAVES DAS DISCIPLINAS
+            ExportaPedido exportarPedido = new ExportaPedido();
+            exportarPedido.writeList();
 
             // for (String disciplina : discipSelecionadas){
             // System.out.println(disciplina);
