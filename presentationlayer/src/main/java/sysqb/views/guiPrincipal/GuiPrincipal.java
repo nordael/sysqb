@@ -22,9 +22,6 @@ public class GuiPrincipal extends JFrame {
 
     private Hashtable<String, HistoricoDisciplinaModel> disciplinasCursadasDic = new Hashtable<String, HistoricoDisciplinaModel>();
    
-    private final HistoricoController controller = new HistoricoController();
-    private final List<HistoricoDisciplinaModel> historicoDisciplinaModelList = controller.getHistoricoModelList();
-
     private JButton btnNext = new JButton("Próximo período");
     private JButton btnPrev = new JButton("Período anterior");
     private JButton btnGerar = new JButton("Gerar Pedido");
@@ -197,7 +194,7 @@ public class GuiPrincipal extends JFrame {
             // TODO ADICIONAR FUNCAO PARA GERAR O PEDIDO ATRAVES DAS DISCIPLINAS
             ExportaPedido exportarPedido = new ExportaPedido();
             
-            exportarPedido.writeList(discipSelecionadas, historicoDisciplinaModelList);
+            exportarPedido.writeList(discipSelecionadas, disciplinasCursadasDic, tableModel.getListaDisciplinasCurso(getGrade()));
 
             // for (String disciplina : discipSelecionadas){
             // System.out.println(disciplina);

@@ -10,8 +10,9 @@ public class DisciplinasView extends AbstractTableModel {
     private DisciplinaCsvParserContoller disciplinaCsvParserContoller;
     private List<Integer> fields;
     private List<DisciplinaModel> disciplinasDoPeriodo;// usamos como dados uma lista genérica de Disciplina
-    private List<String> disciplinasSelecionadas = new ArrayList<String>();// usamos como dados uma lista genérica de Disciplina
-
+    private List<String> disciplinasSelecionadas = new ArrayList<String>();// usamos como dados uma lista genérica de
+                                                                           // Disciplina
+    private List<DisciplinaModel> disciplinasDoCurso;
 
     private int periodo;
 
@@ -84,7 +85,7 @@ public class DisciplinasView extends AbstractTableModel {
                 List<String> disciplinas = getDisciplinasSelecionadas();
                 if (disciplinas.contains(disciplina.getCodigo()))
                     return true;
-                return false; 
+                return false;
             default:
                 throw new IndexOutOfBoundsException("Coluna Inválida!!!");
         }
@@ -93,8 +94,8 @@ public class DisciplinasView extends AbstractTableModel {
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         DisciplinaModel disciplina = disciplinasDoPeriodo.get(rowIndex);
-            
-        if (columnIndex == SELECIONADA_QUEBRA )
+
+        if (columnIndex == SELECIONADA_QUEBRA)
             return true;
 
         return false;
@@ -106,9 +107,9 @@ public class DisciplinasView extends AbstractTableModel {
 
         if (columnIndex == SELECIONADA_QUEBRA) {
             List<String> disciplinas = getDisciplinasSelecionadas();
-            if (disciplinas.contains(disciplina.getCodigo())){
+            if (disciplinas.contains(disciplina.getCodigo())) {
                 disciplinas.remove(disciplina.getCodigo());
-            }else{
+            } else {
                 disciplinas.add(disciplina.getCodigo());
             }
             setDisciplinasSelecionadas(disciplinas);
@@ -151,6 +152,24 @@ public class DisciplinasView extends AbstractTableModel {
         }
 
         return disciplinasPaginadas;
+    }
+
+    public List<DisciplinaModel> getListaDisciplinasCurso(int grade) {
+        List<DisciplinaModel> disciplinas = new ArrayList<DisciplinaModel>();
+
+        if (grade == 2011) {
+            disciplinas = disciplinaCsvParserContoller.csvReader("disciplinas_2011.csv", this.fields);
+        } else {
+            disciplinas = disciplinaCsvParserContoller.csvReader("disciplinas_2019.csv", this.fields);
+        }
+
+        List<DisciplinaModel> disciplinasCurso = new ArrayList<DisciplinaModel>();
+
+        for (DisciplinaModel disciplina : disciplinas) {
+            disciplinasCurso.add(disciplina);
+        }
+
+        return disciplinasCurso;
     }
 
     // funcao para lidar com mudanca de periodo
