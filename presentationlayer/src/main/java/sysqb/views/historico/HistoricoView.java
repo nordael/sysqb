@@ -25,6 +25,16 @@ public class HistoricoView extends JFrame {
         private final HistoricoController controller = new HistoricoController();
         private final List<HistoricoDisciplinaModel> historicoDisciplinaModelList = controller.getHistoricoModelList();
 
+        private String[] columNames = {
+                "Ano Ingresso",
+                "Média Final",
+                "Situação",
+                "Código Disciplina",
+                "Nome Disciplina",
+                "Carga Horária",
+                "Tipo Disciplina",
+                "Frequência"};
+
         @Override
         public int getRowCount() {
             return historicoDisciplinaModelList.size();
@@ -32,12 +42,17 @@ public class HistoricoView extends JFrame {
 
         @Override
         public int getColumnCount() {
-            return controller.getFieldsSize()-8;
+            return controller.getFieldsSize()-7;
         }
 
         @Override
         public Object getValueAt(int i, int i1) {
             return controller.getMember(historicoDisciplinaModelList.get(i), i1);
+        }
+
+        @Override
+        public String getColumnName(int column) {
+            return columNames[column];
         }
     };
 
