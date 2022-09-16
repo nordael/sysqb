@@ -5,6 +5,7 @@ import models.historico.HistoricoDisciplinaModel;
 import models.historico.SituacaoTipo;
 import sysqb.views.disciplinas.DisciplinasView;
 import sysqb.views.historico.HistoricoPrinterView;
+import controllers.historico.HistoricoController;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
@@ -20,6 +21,9 @@ public class GuiPrincipal extends JFrame {
     private DisciplinasView tableModel;
 
     private Hashtable<String, HistoricoDisciplinaModel> disciplinasCursadasDic = new Hashtable<String, HistoricoDisciplinaModel>();
+   
+    private final HistoricoController controller = new HistoricoController();
+    private final List<HistoricoDisciplinaModel> historicoDisciplinaModelList = controller.getHistoricoModelList();
 
     private JButton btnNext = new JButton("Próximo período");
     private JButton btnPrev = new JButton("Período anterior");
@@ -52,7 +56,7 @@ public class GuiPrincipal extends JFrame {
         tableModel = new DisciplinasView();
         HistoricoPrinterView historicoView = new HistoricoPrinterView();
         setDisciplinasCursadasDic(historicoView.getListaMateriasHistorico());
-
+        
         // setando propriedades da tabela...
         // modelo
         table.setModel(tableModel);
@@ -192,7 +196,8 @@ public class GuiPrincipal extends JFrame {
             List<String> discipSelecionadas = tableModel.getDisciplinasSelecionadas();
             // TODO ADICIONAR FUNCAO PARA GERAR O PEDIDO ATRAVES DAS DISCIPLINAS
             ExportaPedido exportarPedido = new ExportaPedido();
-            exportarPedido.writeList();
+            
+            exportarPedido.writeList(discipSelecionadas, historicoDisciplinaModelList);
 
             // for (String disciplina : discipSelecionadas){
             // System.out.println(disciplina);
