@@ -25,6 +25,10 @@ public class ExportaPedido
 		String nomeAluno;
 		String nomeCurso;
 		String grr;
+		// se for do ano 2011 seria 34
+		int qtFaltanteObrigatorias = 35;
+		int qtFaltanteOptativas = 6;
+
 
 		Enumeration<String> codigosDisc = disciplinasCursadasDic.keys();
 
@@ -40,14 +44,27 @@ public class ExportaPedido
 		for (DisciplinaModel disciplina : disciplinasDoCurso){
 			int periodoDisc =disciplina.getPeriodo();
 			String codigoDisc = disciplina.getCodigo(); 
-			// System.out.println(codigoDisc);
-			// se o periodo for ==0 eh uma optativa
+			
 			if (periodoDisc < 4 && periodoDisc != 0 ){
 				if (!(disciplinasCursadasDic.containsKey(codigoDisc) && disciplinasCursadasDic.get(codigoDisc).getSituacao() == SituacaoTipo.APROVADO) ){
 					writer.write(disciplina.getCodigo()+ "\n");
+				}else {
+					qtFaltanteObrigatorias--; 
+				}
+			}else {
+				if ((disciplinasCursadasDic.containsKey(codigoDisc) && disciplinasCursadasDic.get(codigoDisc).getSituacao() == SituacaoTipo.APROVADO) ){
+					if (periodoDisc != 0){
+						qtFaltanteObrigatorias--; 
+					}else {
+						qtFaltanteOptativas--;
+					}
 				}
 			}
 		}
+
+		writer.write("Quantas disciplinas você ainda precisa cursar, incluindo as da próxima matrícula?: \n");
+		writer.write("Obrigatórias: "+qtFaltanteObrigatorias+" Optativas: "+qtFaltanteOptativas+"\n");
+
 	    writer.write("Quais disciplinas você solicita alem da barreira / requisitos?: \n");
         for (String disciplinaSolicitada : disciplinasSelecionadas) {
 			writer.write(disciplinaSolicitada+"\n");
